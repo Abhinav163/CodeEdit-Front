@@ -1,8 +1,9 @@
-import { io } from 'socket.io-client'
+import { io } from "socket.io-client";
 
-const url = import.meta.env.VITE_SERVER_URL || 'http://localhost:8080'
+// Get JWT from localStorage
+const token = localStorage.getItem("token");
 
-export const socket = io(url, {
-  transports: ['websocket'],
-  autoConnect: true
-})
+export const socket = io("/", {
+  auth: { token }, // Send JWT for server verification
+  transports: ["websocket"], // optional
+});
